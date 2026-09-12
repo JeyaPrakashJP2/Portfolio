@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeyaprakash J — RF & Embedded Systems Engineer | Interactive Portfolio</title>
+  <meta name="description" content="Interactive engineering portfolio of Jeyaprakash J — Electronics & Communication Engineering student specializing in RF Engineering, Wireless Systems, Embedded Hardware, and Applied AI.">
+  <meta name="author" content="Jeyaprakash J">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+  
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Background Blueprint & Grid Layer -->
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Top RF Telemetry Strip -->
+  <aside class="telemetry-bar font-mono text-xs" aria-label="RF System Telemetry">
+    <div class="container telemetry-inner">
+      <div class="telemetry-item">
+        <span class="pulse-dot"></span>
+        <span class="telemetry-label">CARRIER:</span>
+        <span class="text-emerald font-semibold" id="top-band-indicator">2.45 GHz ISM [LOCKED]</span>
+      </div>
+      <div class="telemetry-item hide-mobile">
+        <span class="telemetry-label">RSSI:</span>
+        <span class="text-cyan font-semibold">-42 dBm [EXCELLENT]</span>
+      </div>
+      <div class="telemetry-item hide-mobile">
+        <span class="telemetry-label">SYSTEM CLOCK:</span>
+        <span id="live-system-time">00:00:00 UTC</span>
+      </div>
+      <div class="telemetry-actions">
+        <!-- Audio Synthesizer Master Mute / Unmute -->
+        <button id="audio-toggle-btn" class="telemetry-btn" title="Toggle Synthesizer Sound FX & RF Audio Monitor">
+          <span class="audio-icon">🔇</span>
+          <span class="audio-text">LAB AUDIO: OFF</span>
+        </button>
+        <!-- Terminal Quick Launch -->
+        <button id="terminal-toggle-btn" class="telemetry-btn terminal-btn-trigger" title="Launch Interactive Terminal (Shortcut: `~`)">
+          <span>&gt;_ JP-SHELL</span>
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Navigation Header -->
+  <header class="site-header" id="navbar">
+    <div class="header-inner container">
+      <a href="#hero" class="brand-logo" aria-label="Jeyaprakash J - Home">
+        <span class="logo-mark">
+          <svg viewBox="0 0 28 28" width="22" height="22" fill="none">
+            <circle cx="14" cy="20" r="2.5" fill="var(--accent-emerald)"/>
+            <line x1="14" y1="20" x2="14" y2="6" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round"/>
+            <path d="M9 11 C11 9 17 9 19 11" stroke="var(--accent-emerald)" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M6 8 C10 4 18 4 22 8" stroke="var(--accent-cyan)" stroke-width="1.8" stroke-linecap="round" opacity="0.8"/>
+          </svg>
+        </span>
+        <div class="logo-text">
+          <span class="logo-name">Jeyaprakash J</span>
+          <span class="logo-tag">ECE / RF & Embedded</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-links" id="nav-links" aria-label="Primary Navigation">
+        <a href="#about" class="nav-link"><span>01.</span> About</a>
+        <a href="#experience" class="nav-link"><span>02.</span> Experience</a>
+        <a href="#projects" class="nav-link"><span>03.</span> Projects</a>
+        <a href="#sandbox" class="nav-link highlight-link"><span>04.</span> Hardware Lab</a>
+        <a href="#skills" class="nav-link"><span>05.</span> Skills</a>
+        <a href="#philosophy" class="nav-link"><span>06.</span> Mindset</a>
+        <a href="#contact" class="nav-link"><span>07.</span> Contact</a>
+      </nav>
+
+      <!-- Header Controls -->
+      <div class="header-actions">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle light or dark theme" title="Toggle theme">
+          <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Direct Contact CTA -->
+        <a href="#contact" class="btn-pill-action">
+          <span>Get in Touch</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" class="btn-icon mobile-only" aria-label="Toggle mobile menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+      <nav class="mobile-nav-links">
+        <a href="#about" class="mobile-nav-link"><span>01</span> About Me</a>
+        <a href="#experience" class="mobile-nav-link"><span>02</span> Experience & Internships</a>
+        <a href="#projects" class="mobile-nav-link"><span>03</span> Engineering Projects</a>
+        <a href="#sandbox" class="mobile-nav-link text-cyan font-semibold"><span>04</span> 🔬 Hardware Lab Sandbox</a>
+        <a href="#skills" class="mobile-nav-link"><span>05</span> Technical Skills</a>
+        <a href="#philosophy" class="mobile-nav-link"><span>06</span> Engineering Mindset</a>
+        <a href="#contact" class="mobile-nav-link"><span>07</span> Contact Info</a>
+      </nav>
+      <div class="mobile-drawer-footer">
+        <button class="btn-secondary w-full mb-2 terminal-btn-trigger" style="display: flex; justify-content: center; gap: 0.5rem;">
+          <span>&gt;_ Open Terminal Shell</span>
+        </button>
+        <a href="mailto:jjeyaprakash13@gmail.com" class="btn-primary w-full text-center">Send Email Direct</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <!-- Hero Text & Identification -->
+        <div class="hero-content">
+          <!-- Live Status Indicator -->
+          <div class="status-badge">
+            <span class="status-pulse"></span>
+            <span class="status-text">Available for RF & Embedded Roles / Internships</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="title-sub">Hello, I'm</span>
+            <span class="title-name">Jeyaprakash J<span class="accent-dot">.</span></span>
+            <span class="title-role">
+              Aspiring <span class="text-highlight">RF Engineer</span> &amp; Embedded Systems Builder
+            </span>
+          </h1>
+
+          <p class="hero-bio">
+            Final-year <strong>Electronics &amp; Communication Engineering</strong> student at 
+            <strong>V.S.B. College of Engineering Technical Campus</strong>, Coimbatore. Specializing in 
+            electromagnetic field theory, high-frequency signal propagation, antenna optimization, and bridging 
+            microcontroller firmware with real-time AI analytics.
+          </p>
+
+          <!-- Quick Spec Badges -->
+          <div class="spec-badges">
+            <div class="spec-item">
+              <span class="spec-label">Discipline</span>
+              <span class="spec-value">B.E ECE (2023–2027)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Academic Standing</span>
+              <span class="spec-value text-emerald">74.9% (till 6th sem)</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Core Focus</span>
+              <span class="spec-value">RF, Antennas &amp; IoT</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-label">Base</span>
+              <span class="spec-value">Coimbatore, TN, India</span>
+            </div>
+          </div>
+
+          <!-- Hero Actions -->
+          <div class="hero-actions">
+            <a href="#sandbox" class="btn-primary">
+              <span>Try Live Hardware Lab</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="10 8 16 12 10 16 10 8"></polygon>
+              </svg>
+            </a>
+            
+            <button class="btn-secondary" id="hero-copy-email-btn" data-email="jjeyaprakash13@gmail.com" title="Click to copy email">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy Email</span>
+            </button>
+
+            <a href="https://github.com/JeyaPrakashJP2" target="_blank" rel="noopener noreferrer" class="btn-icon-link" aria-label="GitHub Profile">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+
+            <a href="https://www.linkedin.com/in/jeya-prakash-496699404" target="_blank" rel="noopener noreferrer" class="btn-icon-link" aria-label="LinkedIn Profile">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Visual: Real Photo + Interactive Signal Generator & Oscilloscope -->
+        <div class="hero-visual">
+          <div class="photo-card-wrapper">
+            <!-- Corner Precision Crosshairs -->
+            <div class="crosshair ch-top-left" aria-hidden="true">+</div>
+            <div class="crosshair ch-top-right" aria-hidden="true">+</div>
+            <div class="crosshair ch-bottom-left" aria-hidden="true">+</div>
+            <div class="crosshair ch-bottom-right" aria-hidden="true">+</div>
+
+            <div class="photo-container">
+              <img src="assets/images/profile.jpg" alt="Jeyaprakash J - Electronics & RF Engineering Student" class="profile-image" loading="eager">
+              <div class="photo-overlay-tag">
+                <span class="tag-signal">RF / 2.45 GHz</span>
+                <span class="tag-status">ONLINE</span>
+              </div>
+            </div>
+
+            <!-- Embedded Interactive Signal Generator Deck -->
+            <div class="oscilloscope-widget">
+              <div class="osc-header">
+                <div class="osc-title">
+                  <span class="osc-led"></span>
+                  <span class="font-mono text-xs">RF SIGNAL GENERATOR &amp; SCOPE</span>
+                </div>
+                <span class="font-mono text-xs text-muted" id="carrier-freq-readout">fc: 2.45 GHz</span>
+              </div>
+              
+              <canvas id="rfWaveCanvas" width="360" height="90" aria-label="Interactive RF wave visualization"></canvas>
+
+              <!-- Wave Modulation Selector Tabs -->
+              <div class="wave-mode-selector" role="group" aria-label="Modulation Type">
+                <button class="wave-btn active" data-wave="sine" title="Continuous Carrier Sine Wave">CW Sine</button>
+                <button class="wave-btn" data-wave="am" title="Amplitude Modulation">AM</button>
+                <button class="wave-btn" data-wave="fm" title="Frequency Modulation">FM</button>
+                <button class="wave-btn" data-wave="pwm" title="Digital Square / PWM">Square/PWM</button>
+              </div>
+
+              <!-- Real-time Slider Controls -->
+              <div class="generator-sliders">
+                <div class="slider-group">
+                  <label for="freq-range" class="font-mono text-xs">Frequency: <span id="freq-val-label">2.45 GHz</span></label>
+                  <input type="range" id="freq-range" min="1.0" max="5.8" step="0.05" value="2.45">
+                </div>
+                <div class="slider-group">
+                  <label for="mod-range" class="font-mono text-xs">Modulation Depth: <span id="mod-val-label">50%</span></label>
+                  <input type="range" id="mod-range" min="0" max="100" step="5" value="50">
+                </div>
+              </div>
+
+              <div class="osc-controls">
+                <div class="osc-meta font-mono text-xs">
+                  <span id="wave-type-label">TYPE: CW SINE</span>
+                  <span>SNR: 31.2 dB</span>
+                </div>
+                <button id="scope-audio-btn" class="scope-audio-toggle" title="Listen to carrier pitch via Web Audio synthesizer">
+                  <span>🔈 Monitor Tone</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Scroll Indicator -->
+      <a href="#about" class="scroll-cue" aria-label="Scroll down to About section">
+        <span class="scroll-text">DISCOVER MORE</span>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+        </svg>
+      </a>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section-container" id="about">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="font-mono">01 // PROFILE &amp; OBJECTIVE</span>
+          </div>
+          <h2 class="section-title">Bridging High-Frequency Waves with Intelligent Hardware</h2>
+        </div>
+
+        <div class="about-grid">
+          <!-- Text Narrative -->
+          <div class="about-narrative">
+            <p class="lead-text">
+              I am an <strong>Electronics and Communication Engineering student</strong> on a mission to build a career as an 
+              <strong>RF (Radio Frequency) Engineer</strong>. My academic foundation is anchored in electromagnetic field theory, 
+              transmission lines, wireless propagation, and antenna radiation patterns.
+            </p>
+            <p>
+              Beyond textbook theory, I love hands-on experimentation. From tuning analog circuits in <strong>Proteus</strong> and 
+              routing multi-layer PCBs in <strong>KiCad</strong>, to building assistive microcontrollers and training machine learning 
+              models in <strong>Python</strong>, I bridge physical hardware with modern software pipelines.
+            </p>
+            <p>
+              I believe the next leap in wireless communication—from 5G/6G millimeter waves to intelligent IoT edge nodes—requires 
+              engineers who understand both <strong>electromagnetic physics at the physical layer</strong> and <strong>data-driven intelligence 
+              at the software layer</strong>.
+            </p>
+
+            <div class="about-highlights">
+              <div class="highlight-box">
+                <div class="highlight-icon">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                    <path d="M2 12h20"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="highlight-title">Wireless &amp; RF Engineering</h4>
+                  <p class="highlight-desc">Signal performance analysis, antenna impedance matching, modulation techniques, and wireless network optimization.</p>
+                </div>
+              </div>
+
+              <div class="highlight-box">
+                <div class="highlight-icon">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                    <rect x="9" y="9" width="6" height="6"></rect>
+                    <line x1="9" y1="1" x2="9" y2="4"></line>
+                    <line x1="15" y1="1" x2="15" y2="4"></line>
+                    <line x1="9" y1="20" x2="9" y2="23"></line>
+                    <line x1="15" y1="20" x2="15" y2="23"></line>
+                    <line x1="20" y1="9" x2="23" y2="9"></line>
+                    <line x1="20" y1="14" x2="23" y2="14"></line>
+                    <line x1="1" y1="9" x2="4" y2="9"></line>
+                    <line x1="1" y1="14" x2="4" y2="14"></line>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="highlight-title">Embedded Microcontrollers &amp; IoT</h4>
+                  <p class="highlight-desc">Sensor signal conditioning, ADC interfacing, real-time actuator control (Arduino, ESP), and IoT telemetry.</p>
+                </div>
+              </div>
+
+              <div class="highlight-box">
+                <div class="highlight-icon">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="highlight-title">Applied AI &amp; Cloud Integration</h4>
+                  <p class="highlight-desc">Python for predictive machine learning, real-time telemetry analytics, Power BI dashboards, and Google Cloud infrastructure.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Academic Foundation Cards -->
+          <div class="education-column">
+            <h3 class="subsection-heading">
+              <span class="font-mono text-emerald">EDU //</span> Academic Trajectory
+            </h3>
+
+            <!-- Degree Card -->
+            <div class="edu-card active-program">
+              <div class="edu-badge font-mono">2023 — 2027 (Undergrad)</div>
+              <h4 class="edu-degree">B.E. Electronics and Communication Engineering</h4>
+              <p class="edu-school">V.S.B. College of Engineering Technical Campus, Coimbatore</p>
+              <div class="edu-score-pill">
+                <span class="score-label">Cumulative Score:</span>
+                <span class="score-value font-mono">74.9% (till 6th semester)</span>
+              </div>
+              <div class="edu-topics">
+                <span class="topic-tag">Electromagnetic Fields</span>
+                <span class="topic-tag">Wireless Communication</span>
+                <span class="topic-tag">Antennas &amp; Propagation</span>
+                <span class="topic-tag">Digital Signal Processing</span>
+                <span class="topic-tag">Embedded Systems</span>
+                <span class="topic-tag">RF Circuit Design</span>
+              </div>
+            </div>
+
+            <!-- HSC Card -->
+            <div class="edu-card">
+              <div class="edu-badge font-mono">2021 — 2023</div>
+              <h4 class="edu-degree">Higher Secondary Certificate (HSC)</h4>
+              <p class="edu-school">Alagappa Model Higher Secondary School</p>
+              <div class="edu-score-pill">
+                <span class="score-label">Aggregate:</span>
+                <span class="score-value font-mono">61.66%</span>
+              </div>
+              <div class="edu-topics">
+                <span class="topic-tag">Physics</span>
+                <span class="topic-tag">Mathematics</span>
+                <span class="topic-tag">Chemistry</span>
+              </div>
+            </div>
+
+            <!-- Quick Stats Summary -->
+            <div class="quick-stats-grid">
+              <div class="stat-cell">
+                <span class="stat-number font-mono">03</span>
+                <span class="stat-desc">Industry Internships Completed</span>
+              </div>
+              <div class="stat-cell">
+                <span class="stat-number font-mono">03+</span>
+                <span class="stat-desc">Hands-on Hardware &amp; AI Projects</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section class="section-container bg-surface" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="font-mono">02 // TRACK RECORD</span>
+          </div>
+          <h2 class="section-title">Internships &amp; Professional Exposure</h2>
+          <p class="section-subtitle">Real-world experience across machine learning, embedded IoT systems, and real-time data analysis.</p>
+        </div>
+
+        <div class="timeline-wrapper">
+          <!-- Timeline Item 1 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span class="marker-dot"></span>
+              <span class="marker-line"></span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-badge font-mono">INTERNSHIP</span>
+                  <h3 class="timeline-role">Python For Machine Learning Intern</h3>
+                  <h4 class="timeline-company">Proplus Technologies</h4>
+                </div>
+                <div class="timeline-date font-mono">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  02/01/2026 – 12/01/2026
+                </div>
+              </div>
+              <div class="timeline-body">
+                <p>
+                  Specialized in Python programming applied to modern machine learning workflows. Explored regression, 
+                  classification, and clustering algorithms, optimizing pipeline data preprocessing, and evaluating 
+                  model precision on structured datasets.
+                </p>
+                <div class="tech-tag-group">
+                  <span class="tag-sm">Python</span>
+                  <span class="tag-sm">Machine Learning</span>
+                  <span class="tag-sm">Data Preprocessing</span>
+                  <span class="tag-sm">Model Evaluation</span>
+                  <span class="tag-sm">NumPy / Pandas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 2 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span class="marker-dot"></span>
+              <span class="marker-line"></span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-badge font-mono">INTERNSHIP</span>
+                  <h3 class="timeline-role">Embedded Systems &amp; IoT (ES-IoT) Intern</h3>
+                  <h4 class="timeline-company">Emiglitz Technologies</h4>
+                </div>
+                <div class="timeline-date font-mono">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  11/06/2025 – 25/06/2025
+                </div>
+              </div>
+              <div class="timeline-body">
+                <p>
+                  Focused on bridging physical sensors with cloud intelligence. Developed predictive models using embedded 
+                  system telemetry, working with IoT communication protocols, microcontroller inputs, and data logging architectures.
+                </p>
+                <div class="tech-tag-group">
+                  <span class="tag-sm">Embedded Systems</span>
+                  <span class="tag-sm">IoT Protocols</span>
+                  <span class="tag-sm">Predictive Modeling</span>
+                  <span class="tag-sm">Sensor Telemetry</span>
+                  <span class="tag-sm">Microcontrollers</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Timeline Item 3 -->
+          <div class="timeline-item">
+            <div class="timeline-marker">
+              <span class="marker-dot"></span>
+            </div>
+            <div class="timeline-card">
+              <div class="timeline-header">
+                <div>
+                  <span class="timeline-badge font-mono">INTERNSHIP</span>
+                  <h3 class="timeline-role">Artificial Intelligence Intern</h3>
+                  <h4 class="timeline-company">ADOVI</h4>
+                </div>
+                <div class="timeline-date font-mono">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  08/03/2024 – 28/04/2024
+                </div>
+              </div>
+              <div class="timeline-body">
+                <p>
+                  Conducted real-time data analysis projects and applied machine learning algorithms to derive actionable 
+                  insights. Worked with exploratory data analysis (EDA), anomaly detection, and predictive scoring on business data.
+                </p>
+                <div class="tech-tag-group">
+                  <span class="tag-sm">Artificial Intelligence</span>
+                  <span class="tag-sm">Real-time Data Analysis</span>
+                  <span class="tag-sm">ML Algorithms</span>
+                  <span class="tag-sm">Exploratory Data Analysis</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="section-container" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="font-mono">03 // PROVEN HARDWARE &amp; CODE</span>
+          </div>
+          <h2 class="section-title">Featured Engineering Projects</h2>
+          <p class="section-subtitle">Real prototypes combining microcontrollers, RF communication, sensor signal processing, and cloud services.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="project-filters" role="tablist" aria-label="Project Categories">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All Projects (4)</button>
+          <button class="filter-btn" data-filter="embedded" role="tab" aria-selected="false">Embedded &amp; Hardware (2)</button>
+          <button class="filter-btn" data-filter="cloud" role="tab" aria-selected="false">Cloud &amp; Storage (1)</button>
+          <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false">AI &amp; Web Platforms (1)</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+
+          <!-- Project 1: Voice Controlled Wheelchair -->
+          <article class="project-card" data-category="embedded" data-project-id="wheelchair">
+            <div class="project-top">
+              <div class="project-domain font-mono">EMBEDDED / ASSISTIVE TECH / RF</div>
+              <span class="project-status">PROTOTYPE</span>
+            </div>
+            
+            <h3 class="project-title">Voice-Controlled Wheelchair System</h3>
+            <p class="project-description">
+              Designed an assistive-mobility system integrating an embedded microcontroller with a wireless communication 
+              module for hands-free, low-latency voice-based motion control. Developed to aid individuals with physical disabilities 
+              in navigating obstacles safely.
+            </p>
+
+            <div class="project-specs-table">
+              <div class="spec-row">
+                <span class="font-mono text-muted">Core Tech:</span>
+                <span>Embedded Microcontroller, Voice Module</span>
+              </div>
+              <div class="spec-row">
+                <span class="font-mono text-muted">Wireless Link:</span>
+                <span>RF / Bluetooth Transceiver</span>
+              </div>
+              <div class="spec-row">
+                <span class="font-mono text-muted">Actuation:</span>
+                <span>L298N Dual H-Bridge Motor Driver &amp; DC Motors</span>
+              </div>
+            </div>
+
+            <div class="project-tech-tags">
+              <span class="tech-pill">Microcontroller</span>
+              <span class="tech-pill">RF Wireless</span>
+              <span class="tech-pill">Voice Processing</span>
+              <span class="tech-pill">Motor Drivers</span>
+              <span class="tech-pill">C / C++</span>
+            </div>
+
+            <div class="project-card-footer">
+              <button class="btn-card-action open-modal-btn" data-project="wheelchair">
+                <span>View System Architecture</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 2: Light-Following Robot -->
+          <article class="project-card" data-category="embedded" data-project-id="light-robot">
+            <div class="project-top">
+              <div class="project-domain font-mono">ROBOTICS / SENSORS / ADC</div>
+              <span class="project-status">PHYSICAL BUILD</span>
+            </div>
+            
+            <h3 class="project-title">Autonomous Light-Following Robot</h3>
+            <p class="project-description">
+              Built an autonomous mobile robot using Light Dependent Resistors (LDRs), an Arduino microcontroller, and motor 
+              drivers. Features real-time analog-to-digital sensor signal processing to calculate differential light intensity 
+              and steer the chassis toward the brightest illumination source.
+            </p>
+
+            <div class="project-specs-table">
+              <div class="spec-row">
+                <span class="font-mono text-muted">Controller:</span>
+                <span>Arduino Microcontroller (ATmega328P)</span>
+              </div>
+              <div class="spec-row">
+                <span class="font-mono text-muted">Sensors:</span>
+                <span>Dual LDR Array with Voltage Dividers</span>
+              </div>
+              <div class="spec-row">
+                <span class="font-mono text-muted">Interactive Demo:</span>
+                <span class="text-cyan font-semibold">Playable in Sandbox Below ↓</span>
+              </div>
+            </div>
+
+            <div class="project-tech-tags">
+              <span class="tech-pill">Arduino</span>
+              <span class="tech-pill">LDR Sensors</span>
+              <span class="tech-pill">Signal Processing</span>
+              <span class="tech-pill">Analog-to-Digital (ADC)</span>
+              <span class="tech-pill">PWM Drivers</span>
+            </div>
+
+            <div class="project-card-footer">
+              <button class="btn-card-action open-modal-btn" data-project="light-robot">
+                <span>View Circuit &amp; Logic</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 3: Cloud-Based File Storage Prototype -->
+          <article class="project-card" data-category="cloud" data-project-id="cloud-storage">
+            <div class="project-top">
+              <div class="project-domain font-mono">CLOUD / BACKEND / SECURITY</div>
+              <span class="project-status">DEPLOYED PROTO</span>
+            </div>
+            
+            <h3 class="project-title">Cloud-Based File Storage Prototype</h3>
+            <p class="project-description">
+              Designed and developed a cloud-based storage system enabling secure multi-format file upload, persistent cloud 
+              storage, and indexed retrieval. Applied cloud architecture patterns, backend integration principles, and access security 
+              grounded in Google Cloud Fundamentals training.
+            </p>
+
+            <div class="project-specs-table">
+              <div class="spec-row">
+                <span class="font-mono text-muted">Cloud Provider:</span>
+                <span>Google Cloud Platform (GCP) Fundamentals</span>
+              </div>
+              <div class="spec-row">
+                <span class="font-mono text-muted">Backend Logic:</span>
+                <span>REST Endpoints &amp; Blob Storage Handler</span>
+              </div>
+              <div class="spec-row">
+                <span class="font-mono text-muted">Core Focus:</span>
+                <span>Data Integrity, Secure Upload &amp; Retrieval</span>
+              </div>
+            </div>
+
+            <div class="project-tech-tags">
+              <span class="tech-pill">Google Cloud</span>
+              <span class="tech-pill">Python Backend</span>
+              <span class="tech-pill">Cloud Buckets</span>
+              <span class="tech-pill">REST APIs</span>
+              <span class="tech-pill">Data Security</span>
+            </div>
+
+            <div class="project-card-footer">
+              <button class="btn-card-action open-modal-btn" data-project="cloud-storage">
+                <span>View Architecture</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </article>
+
+          <!-- Project 4: LearnX AI Platform -->
+          <article class="project-card" data-category="ai" data-project-id="learnx-ai">
+            <div class="project-top">
+              <div class="project-domain font-mono">AI PLATFORM / BE10X / FRONTEND</div>
+              <span class="project-status">FEATURED PROJECT</span>
+            </div>
+            
+            <h3 class="project-title">LearnX AI — Learning Platform</h3>
+            <p class="project-description">
+              Developed as a core capstone project during Be10X training: an interactive web platform that utilizes modern AI tools 
+              and prompt engineering to create interactive, structured learning paths for students exploring technical topics.
+            </p>
+
+            <div class="project-specs-table">
+              <div class="spec-row">
+                <span class="font-mono text-muted">Domain:</span>
+                <span>AI-Assisted Education &amp; Tools</span>
+              </div>
+              <div class="spec-row">
+                <span class="font-mono text-muted">UI Stack:</span>
+                <span>Tailwind CSS, Modern JavaScript, HTML5</span>
+              </div>
+              <div class="spec-row">
+                <span class="font-mono text-muted">Integration:</span>
+                <span>Generative AI Prompts &amp; Knowledge Synthesis</span>
+              </div>
+            </div>
+
+            <div class="project-tech-tags">
+              <span class="tech-pill">AI Tools</span>
+              <span class="tech-pill">Tailwind CSS</span>
+              <span class="tech-pill">JavaScript</span>
+              <span class="tech-pill">Prompt Engineering</span>
+              <span class="tech-pill">Be10x Certified</span>
+            </div>
+
+            <div class="project-card-footer">
+              <button class="btn-card-action open-modal-btn" data-project="learnx-ai">
+                <span>View Platform Details</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- NEW INTERACTIVE HARDWARE SANDBOX SECTION -->
+    <section class="section-container bg-surface" id="sandbox">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="font-mono">04 // INTERACTIVE HARDWARE BENCH</span>
+          </div>
+          <h2 class="section-title">Playable Hardware Simulation: Light-Following Robot</h2>
+          <p class="section-subtitle">
+            Move or drag your mouse inside the testbed below! Your cursor acts as a concentrated light source (torch), 
+            and the simulated Arduino differential-drive robot will calculate dual LDR analog voltages to steer toward you.
+          </p>
+        </div>
+
+        <div class="sandbox-wrapper">
+          <!-- Simulation Canvas Container -->
+          <div class="sandbox-stage">
+            <canvas id="robotSimCanvas" width="700" height="380" aria-label="Interactive 2D simulation of light-following robot"></canvas>
+            <div class="stage-overlay-hint">
+              <span class="hint-torch">🔦 Move your cursor / finger inside to guide the robot</span>
+              <button id="reset-sim-btn" class="stage-btn-reset font-mono">Reset Position</button>
+            </div>
+          </div>
+
+          <!-- Real-Time Hardware Telemetry HUD -->
+          <div class="sandbox-hud font-mono">
+            <div class="hud-header">
+              <span class="text-emerald">ATmega328P ADC &amp; PWM TELEMETRY</span>
+              <span class="hud-status">SAMPLE RATE: 100 Hz</span>
+            </div>
+
+            <div class="hud-grid">
+              <div class="hud-card">
+                <span class="hud-label">LDR_LEFT (ANALOG 0)</span>
+                <span class="hud-value text-cyan" id="hud-ldr-left">0.00 V</span>
+                <div class="hud-bar-bg"><div class="hud-bar-fill" id="bar-ldr-left"></div></div>
+              </div>
+
+              <div class="hud-card">
+                <span class="hud-label">LDR_RIGHT (ANALOG 1)</span>
+                <span class="hud-value text-cyan" id="hud-ldr-right">0.00 V</span>
+                <div class="hud-bar-bg"><div class="hud-bar-fill" id="bar-ldr-right"></div></div>
+              </div>
+
+              <div class="hud-card">
+                <span class="hud-label">MOTOR_LEFT (PIN D5 PWM)</span>
+                <span class="hud-value text-emerald" id="hud-pwm-left">0 / 255</span>
+                <div class="hud-bar-bg"><div class="hud-bar-fill bar-emerald" id="bar-pwm-left"></div></div>
+              </div>
+
+              <div class="hud-card">
+                <span class="hud-label">MOTOR_RIGHT (PIN D6 PWM)</span>
+                <span class="hud-value text-emerald" id="hud-pwm-right">0 / 255</span>
+                <div class="hud-bar-bg"><div class="hud-bar-fill bar-emerald" id="bar-pwm-right"></div></div>
+              </div>
+            </div>
+
+            <!-- Algorithm Explanation Box -->
+            <div class="hud-logic-box">
+              <span class="text-muted font-bold">// EMBEDDED C STEERING ALGORITHM:</span>
+              <code>
+                float diff = ldr_left - ldr_right;<br>
+                if (abs(diff) &lt; DEADBAND) { drive_forward(BASE_SPEED); }<br>
+                else if (diff &gt; 0) { steer_left(diff * GAIN); }<br>
+                else { steer_right(-diff * GAIN); }
+              </code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS MATRIX -->
+    <section class="section-container" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="font-mono">05 // TOOLBOX &amp; PROFICIENCIES</span>
+          </div>
+          <h2 class="section-title">Technical Capabilities</h2>
+          <p class="section-subtitle">Categorized breakdown of hardware simulation, programming languages, web technologies, and engineering tools.</p>
+        </div>
+
+        <div class="skills-matrix-grid">
+
+          <!-- Hardware, RF & EDA Tools -->
+          <div class="skill-category-card">
+            <div class="skill-category-header">
+              <div class="category-icon-box text-emerald">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M2 12h20M7 8l-5 4 5 4M17 8l5 4-5 4M12 2v20"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="category-title">Hardware, RF &amp; EDA Tools</h3>
+                <span class="category-subtitle font-mono">Physical &amp; Circuit Layer</span>
+              </div>
+            </div>
+
+            <div class="skill-items-list">
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">KiCad</span>
+                  <span class="skill-desc">Schematic capture &amp; PCB layout design</span>
+                </div>
+                <span class="skill-badge-type font-mono">EDA</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">Proteus</span>
+                  <span class="skill-desc">Circuit simulation &amp; microcontroller emulation</span>
+                </div>
+                <span class="skill-badge-type font-mono">SIMULATION</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">RF &amp; Wireless Theory</span>
+                  <span class="skill-desc">Electromagnetic fields, antenna patterns, signal analysis</span>
+                </div>
+                <span class="skill-badge-type font-mono">THEORY</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">Embedded Microcontrollers</span>
+                  <span class="skill-desc">Arduino, sensor interfacing, ADC, PWM motor control</span>
+                </div>
+                <span class="skill-badge-type font-mono">FIRMWARE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Programming Languages -->
+          <div class="skill-category-card">
+            <div class="skill-category-header">
+              <div class="category-icon-box text-cyan">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h3 class="category-title">Programming &amp; Software</h3>
+                <span class="category-subtitle font-mono">Core Codebases</span>
+              </div>
+            </div>
+
+            <div class="skill-items-list">
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">Python</span>
+                  <span class="skill-desc">Machine learning, sensor telemetry, automation scripts</span>
+                </div>
+                <span class="skill-badge-type font-mono">PRIMARY</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">Java</span>
+                  <span class="skill-desc">OOP architecture, algorithmic problem solving, data structures</span>
+                </div>
+                <span class="skill-badge-type font-mono">CORE</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">C / Embedded C</span>
+                  <span class="skill-desc">Microcontroller firmware, register-level manipulation</span>
+                </div>
+                <span class="skill-badge-type font-mono">HARDWARE</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">Git &amp; GitHub</span>
+                  <span class="skill-desc">Version control, branch management, collaborative workflows</span>
+                </div>
+                <span class="skill-badge-type font-mono">DEVOPS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Web & Frontend Frameworks -->
+          <div class="skill-category-card">
+            <div class="skill-category-header">
+              <div class="category-icon-box text-indigo">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+              </div>
+              <div>
+                <h3 class="category-title">Frontend &amp; Interface Design</h3>
+                <span class="category-subtitle font-mono">Web UI &amp; Styling</span>
+              </div>
+            </div>
+
+            <div class="skill-items-list">
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">HTML5 &amp; CSS3</span>
+                  <span class="skill-desc">Semantic markup, flexbox, grid, responsive layouts</span>
+                </div>
+                <span class="skill-badge-type font-mono">STANDARD</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">JavaScript (ES6+)</span>
+                  <span class="skill-desc">DOM manipulation, canvas graphics, asynchronous APIs</span>
+                </div>
+                <span class="skill-badge-type font-mono">SCRIPTING</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">Tailwind CSS</span>
+                  <span class="skill-desc">Utility-first styling, responsive dashboards</span>
+                </div>
+                <span class="skill-badge-type font-mono">FRAMEWORK</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">Bootstrap</span>
+                  <span class="skill-desc">Rapid responsive UI prototyping &amp; grid systems</span>
+                </div>
+                <span class="skill-badge-type font-mono">FRAMEWORK</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cloud, Data & Analytics -->
+          <div class="skill-category-card">
+            <div class="skill-category-header">
+              <div class="category-icon-box text-purple">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="category-title">Cloud, AI &amp; Analytics</h3>
+                <span class="category-subtitle font-mono">Intelligence &amp; Data</span>
+              </div>
+            </div>
+
+            <div class="skill-items-list">
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">Google Cloud Fundamentals</span>
+                  <span class="skill-desc">Cloud storage buckets, compute instances, IAM</span>
+                </div>
+                <span class="skill-badge-type font-mono">GCP</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">Power BI</span>
+                  <span class="skill-desc">Data reporting, business KPI dashboards, visualizations</span>
+                </div>
+                <span class="skill-badge-type font-mono">BI</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">Applied Machine Learning</span>
+                  <span class="skill-desc">Regression models, telemetry analytics, feature extraction</span>
+                </div>
+                <span class="skill-badge-type font-mono">ML</span>
+              </div>
+
+              <div class="skill-item-row">
+                <div class="skill-item-info">
+                  <span class="skill-name">AI Productivity Tools</span>
+                  <span class="skill-desc">Prompt engineering, workflow automation via Be10X</span>
+                </div>
+                <span class="skill-badge-type font-mono">TOOLS</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & ACCOMPLISHMENTS -->
+    <section class="section-container bg-surface" id="certifications">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="font-mono">06 // CREDENTIALS &amp; MILESTONES</span>
+          </div>
+          <h2 class="section-title">Certifications &amp; Accomplishments</h2>
+        </div>
+
+        <div class="cert-grid">
+          <!-- Cert 1: Coursera GCP -->
+          <div class="cert-card">
+            <div class="cert-badge-row">
+              <span class="cert-source font-mono">COURSERA</span>
+              <span class="cert-elite">ELITE CERTIFICATION</span>
+            </div>
+            <h3 class="cert-name">Google Cloud Fundamentals</h3>
+            <p class="cert-org">Course Master Certification</p>
+            <p class="cert-desc">
+              Comprehensive understanding of Google Cloud infrastructure, compute options, storage services, identity and access management, and networking configurations.
+            </p>
+            <div class="cert-footer font-mono text-xs text-muted">
+              <span>CLOUD COMPUTING</span>
+              <span>VERIFIED</span>
+            </div>
+          </div>
+
+          <!-- Cert 2: Be10X AI Tools -->
+          <div class="cert-card">
+            <div class="cert-badge-row">
+              <span class="cert-source font-mono">BE10X</span>
+              <span class="cert-elite">APPLIED AI</span>
+            </div>
+            <h3 class="cert-name">AI Tools &amp; Productivity</h3>
+            <p class="cert-org">Capstone: Developed "LearnX AI" Platform</p>
+            <p class="cert-desc">
+              Hands-on mastery of generative AI tooling, prompt structuring, API automation, and building student learning portals driven by AI.
+            </p>
+            <div class="cert-footer font-mono text-xs text-muted">
+              <span>GENERATIVE AI</span>
+              <span>PROJECT COMPLETED</span>
+            </div>
+          </div>
+
+          <!-- Cert 3: Power BI -->
+          <div class="cert-card">
+            <div class="cert-badge-row">
+              <span class="cert-source font-mono">BE10X / ANALYTICS</span>
+              <span class="cert-elite">DATA VISUALIZATION</span>
+            </div>
+            <h3 class="cert-name">Power BI Data Analytics</h3>
+            <p class="cert-org">Executive Dashboarding</p>
+            <p class="cert-desc">
+              Data modeling, DAX queries, multi-source ingestion, and developing interactive business intelligence dashboards for decision-making.
+            </p>
+            <div class="cert-footer font-mono text-xs text-muted">
+              <span>BUSINESS INTELLIGENCE</span>
+              <span>CERTIFIED</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accomplishments Row -->
+        <div class="accomplishments-container">
+          <h3 class="accomplishment-header font-mono">
+            <span class="text-emerald">// NOTABLE RECOGNITIONS &amp; ACTIVITIES</span>
+          </h3>
+
+          <div class="milestone-grid">
+            <div class="milestone-box">
+              <div class="milestone-num font-mono">01</div>
+              <div>
+                <h4 class="milestone-title">National Level Technical Symposium</h4>
+                <p class="milestone-desc">
+                  Actively participated and represented in the National Level Technical Symposium conducted by 
+                  <strong>Eswar College of Engineering and Technology</strong>, engaging in technical discussions and engineering showcases.
+                </p>
+              </div>
+            </div>
+
+            <div class="milestone-box">
+              <div class="milestone-num font-mono">02</div>
+              <div>
+                <h4 class="milestone-title">Industrial Immersion at EMIGLITZ Technologies</h4>
+                <p class="milestone-desc">
+                  Completed industrial training visits at <strong>EMIGLITZ Technologies, Coimbatore</strong>, studying enterprise 
+                  embedded manufacturing, PCB testing racks, and production-grade IoT sensor networks.
+                </p>
+              </div>
+            </div>
+
+            <div class="milestone-box">
+              <div class="milestone-num font-mono">03</div>
+              <div>
+                <h4 class="milestone-title">Continuous Practical Upskilling</h4>
+                <p class="milestone-desc">
+                  Committed to continuous technical growth with specialized certifications in Be10x AI tools, Power BI data engineering, 
+                  and ongoing RF network performance simulations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ENGINEERING MINDSET / FIELD NOTES -->
+    <section class="section-container" id="philosophy">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="font-mono">07 // ENGINEERING PHILOSOPHY</span>
+          </div>
+          <h2 class="section-title">How I Approach Engineering</h2>
+          <p class="section-subtitle">Real principles derived from soldering irons, breadboards, circuit simulators, and debug logs.</p>
+        </div>
+
+        <div class="philosophy-grid">
+          <div class="philo-card">
+            <div class="philo-number font-mono">01</div>
+            <h3 class="philo-heading">Respect the Physics of the Medium</h3>
+            <p>
+              Software is logical, but radio frequency signals exist in the unforgiving physical world. Signal attenuation, 
+              phase noise, impedance mismatches, and electromagnetic interference cannot be solved with an `if` statement—they 
+              demand rigorous calculations, careful circuit shielding, and thorough grounding.
+            </p>
+          </div>
+
+          <div class="philo-card">
+            <div class="philo-number font-mono">02</div>
+            <h3 class="philo-heading">Validate Before You Fabricate</h3>
+            <p>
+              Whether simulating a microcontroller's logic in Proteus, reviewing PCB trace clearance in KiCad, or verifying 
+              analog sensor voltages with an oscilloscope, early simulation prevents costly hardware smoke and uncovers edge cases before assembly.
+            </p>
+          </div>
+
+          <div class="philo-card">
+            <div class="philo-number font-mono">03</div>
+            <h3 class="philo-heading">Software Amplifies Silicon</h3>
+            <p>
+              A microcontroller or RF transceiver is only as capable as the firmware and telemetry pipelines backing it. 
+              By merging embedded C hardware control with Python-based predictive models and cloud APIs, simple sensors transform 
+              into autonomous, intelligent systems.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section-container bg-surface" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">
+            <span class="font-mono">08 // TRANSMIT MESSAGE</span>
+          </div>
+          <h2 class="section-title">Let's Connect &amp; Collaborate</h2>
+          <p class="section-subtitle">Open for full-time RF engineering opportunities, embedded systems roles, and technical collaborations.</p>
+        </div>
+
+        <div class="contact-layout">
+          <!-- Direct Contact Card -->
+          <div class="contact-info-panel">
+            <div class="panel-header">
+              <span class="font-mono text-xs text-emerald">// DIRECT TRANSMISSION CHANNELS</span>
+              <h3 class="panel-title">Get In Touch Directly</h3>
+              <p class="panel-text">
+                Whether you have an inquiry about wireless communication projects, embedded development, or an internship/entry-level 
+                engineering opening, my inbox is always open.
+              </p>
+            </div>
+
+            <div class="contact-methods-list">
+              <!-- Email -->
+              <div class="contact-method-item">
+                <div class="method-icon text-cyan">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
+                <div class="method-details">
+                  <span class="method-label">Official Email</span>
+                  <a href="mailto:jjeyaprakash13@gmail.com" class="method-val">jjeyaprakash13@gmail.com</a>
+                </div>
+                <button class="btn-copy-mini" id="copy-email-card-btn" data-email="jjeyaprakash13@gmail.com" title="Copy email address">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Phone -->
+              <div class="contact-method-item">
+                <div class="method-icon text-emerald">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <div class="method-details">
+                  <span class="method-label">Phone / WhatsApp</span>
+                  <a href="tel:+918270880162" class="method-val font-mono">+91 8270880162</a>
+                </div>
+              </div>
+
+              <!-- Location -->
+              <div class="contact-method-item">
+                <div class="method-icon text-indigo">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div class="method-details">
+                  <span class="method-label">Location</span>
+                  <span class="method-val">Coimbatore, Tamil Nadu, India</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social Links Group -->
+            <div class="contact-socials">
+              <span class="font-mono text-xs text-muted">// NETWORK PROFILES</span>
+              <div class="social-btn-group">
+                <a href="https://github.com/JeyaPrakashJP2" target="_blank" rel="noopener noreferrer" class="social-pill">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+                  </svg>
+                  <span>GitHub: JeyaPrakashJP2</span>
+                </a>
+                <a href="https://www.linkedin.com/in/jeya-prakash-496699404" target="_blank" rel="noopener noreferrer" class="social-pill">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                  <span>LinkedIn Profile</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Message Form -->
+          <div class="contact-form-panel">
+            <h3 class="panel-title font-mono text-sm text-cyan">// QUICK INQUIRY FORM</h3>
+            <p class="text-xs text-muted mb-4">Send a direct message right into your default email client.</p>
+
+            <form id="portfolio-contact-form" class="contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="sender-name">Your Name</label>
+                  <input type="text" id="sender-name" name="name" required placeholder="e.g. Alex Henderson">
+                </div>
+                <div class="form-group">
+                  <label for="sender-email">Your Email</label>
+                  <input type="email" id="sender-email" name="email" required placeholder="alex@company.com">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="message-subject">Subject / Inquiry Type</label>
+                <input type="text" id="message-subject" name="subject" required placeholder="e.g. RF Engineering Opportunity / Embedded Project">
+              </div>
+
+              <div class="form-group">
+                <label for="message-body">Message</label>
+                <textarea id="message-body" name="message" rows="5" required placeholder="Hello Jeyaprakash, I came across your portfolio and would like to connect regarding..."></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary w-full">
+                <span>Compose &amp; Send Message</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="font-mono text-xs text-muted">
+          DESIGNED &amp; ENGINEERED BY <span class="text-foreground font-semibold">JEYAPRAKASH J</span>
+        </div>
+        <div class="text-xs text-muted">
+          B.E. Electronics and Communication Engineering &bull; 2023–2027
+        </div>
+      </div>
+
+      <div class="footer-center">
+        <div class="system-status-indicator">
+          <span class="pulse-dot"></span>
+          <span class="font-mono text-xs">ANTENNA CARRIER FREQUENCY // LOCKED 2.45 GHz</span>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <button id="back-to-top" class="btn-back-top" aria-label="Back to top">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+          <span class="font-mono text-xs">TOP</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING TERMINAL LAUNCHER BUTTON -->
+  <button id="floating-term-btn" class="floating-term-btn terminal-btn-trigger" aria-label="Open CLI Terminal Shell" title="Launch Interactive Terminal (Press ~)">
+    <span class="term-icon font-mono">&gt;_</span>
+    <span class="term-label font-mono text-xs">JP-SHELL</span>
+  </button>
+
+  <!-- INTERACTIVE CLI TERMINAL DRAWER / MODAL -->
+  <div class="terminal-overlay" id="terminalOverlay" aria-hidden="true" role="dialog" aria-label="Interactive Terminal Shell">
+    <div class="terminal-window">
+      <!-- Terminal Window Bar -->
+      <div class="terminal-bar">
+        <div class="terminal-dots">
+          <span class="term-dot dot-red" id="term-close-btn" title="Close Terminal"></span>
+          <span class="term-dot dot-yellow"></span>
+          <span class="term-dot dot-green"></span>
+        </div>
+        <div class="terminal-title font-mono text-xs">
+          <span>jp@station: ~ (RF-OS v2.45)</span>
+        </div>
+        <div class="terminal-actions">
+          <span class="font-mono text-xs text-muted">ESC to close</span>
+        </div>
+      </div>
+
+      <!-- Terminal Output & Prompt Area -->
+      <div class="terminal-body font-mono text-xs" id="terminalBody">
+        <div class="term-welcome">
+          <pre class="term-ascii text-cyan">
+   __ ____  _____  _   _ _____ _   _     
+  | |  _ \| ____|| | | | ____| | | |    
+  | | |_) |  _|  | |_| |  _| | |_| |    
+ _| |  __/| |___ |  _  | |___|  _  |    
+|___|_|   |_____||_| |_|_____|_| |_|    
+  [RF &amp; EMBEDDED ENGINEERING CONSOLE]
+          </pre>
+          <p class="text-muted">Type <span class="text-emerald font-semibold">help</span> to view available system commands.</p>
+        </div>
+        <div id="term-history"></div>
+        <div class="term-prompt-line">
+          <span class="term-user text-emerald">guest@jp-rf</span>:<span class="term-dir text-cyan">~</span>$&nbsp;
+          <input type="text" id="term-input" class="term-input" autocomplete="off" spellcheck="false" autofocus>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEEP-DIVE PROJECT DETAILS MODAL -->
+  <div class="modal-backdrop" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close details modal">&times;</button>
+      <div class="modal-content" id="modalContent">
+        <!-- Injected via JavaScript dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
